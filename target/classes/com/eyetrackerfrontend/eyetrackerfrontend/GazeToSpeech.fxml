@@ -3,7 +3,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="root" prefHeight="900.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eyetrackerfrontend.eyetrackerfrontend.GazeToSpeechController">
+<AnchorPane fx:id="root" prefHeight="850.0" prefWidth="1700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eyetrackerfrontend.eyetrackerfrontend.GazeToSpeechController">
   <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
     <Image url="@fiducial_0_scaled.png" />
   </ImageView>

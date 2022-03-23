@@ -18,7 +18,7 @@ public class MainApplication extends Application {
 
     public static boolean enableCursorMove = false;
     public static volatile boolean logData = false, showTargetRec = false;
-    public static volatile int rawX, rawY;
+    public static volatile int rawX = 300, rawY = 200;
     public static int X, Y;
     public static int offsetX = 0, offsetY = 0;
     public static final int screenWidth = 1550, screenHeight = 750;

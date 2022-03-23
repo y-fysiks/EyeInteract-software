@@ -68,7 +68,7 @@ public class GazeToSpeechController {
                     Phrase phrase = new Phrase(wordList.get(cnt), i, j);
                     phraseList.add(phrase);
                     Label lbl = new Label(phrase.text);
-                    lbl.setFont(Font.font("Times New Roman", 36));
+                    lbl.setFont(Font.font("Times New Roman", 32));
                     lbl.setTextAlignment(TextAlignment.CENTER);
                     cnt++;
                     box.getChildren().add(lbl);

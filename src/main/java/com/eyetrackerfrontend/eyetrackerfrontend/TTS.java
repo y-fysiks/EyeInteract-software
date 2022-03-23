@@ -40,7 +40,7 @@ public class TTS {
             synthesizer.speakPlainText(s, null);
 
             // until the queue is empty.
-            synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
+            //synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
         } catch (Exception e) {
             System.out.println("An error occurred while attempting to speak");
             e.printStackTrace();

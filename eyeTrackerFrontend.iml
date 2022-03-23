@@ -29,5 +29,7 @@
     <orderEntry type="library" name="Maven: org.zeromq:jeromq:0.5.2" level="project" />
     <orderEntry type="library" name="Maven: eu.neilalexander:jnacl:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.msgpack:msgpack-core:0.9.1" level="project" />
+    <orderEntry type="library" name="cmu_time_awb" level="project" />
+    <orderEntry type="library" name="jsapi" level="project" />
   </component>
 </module>

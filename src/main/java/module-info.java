@@ -4,6 +4,7 @@ module com.eyetrackerfrontend.eyetrackerfrontend {
     requires jeromq;
     requires msgpack.core;
     requires java.desktop;
+    requires jsapi;
 
     opens com.eyetrackerfrontend.eyetrackerfrontend to javafx.fxml;
     exports com.eyetrackerfrontend.eyetrackerfrontend;

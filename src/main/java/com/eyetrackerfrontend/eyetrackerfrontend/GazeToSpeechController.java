@@ -11,6 +11,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import java.util.Locale;
+import javax.speech.Central;
+import javax.speech.synthesis.Synthesizer;
+import javax.speech.synthesis.SynthesizerModeDesc;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,6 +25,7 @@ public class GazeToSpeechController {
     private BufferedReader br;
     private final ArrayList<String> wordList = new ArrayList<>();
     private final ArrayList<Phrase> phraseList = new ArrayList<>();
+    public final static TTS tts = new TTS();
 
 
     /**
@@ -38,6 +43,8 @@ public class GazeToSpeechController {
         while ((s = br.readLine()) != null && !s.equals("")) {
             wordList.add(s);
         }
+
+        tts.speak("Hello, world. ");
 
         Circle target = new Circle(0, 0, 40);
         Color targetCol = Color.rgb(255, 38, 38, 0.5);
@@ -70,6 +77,8 @@ public class GazeToSpeechController {
             }
         }
 
+
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -79,14 +88,16 @@ public class GazeToSpeechController {
                     MainApplication.X = (int) Math.round(MainApplication.X + (MainApplication.rawX - MainApplication.X) * 0.2);
                     MainApplication.Y = (int) Math.round(MainApplication.Y + (MainApplication.rawY - MainApplication.Y) * 0.2);
 
-                    target.setCenterX(150 + MainApplication.X);
-                    target.setCenterY(150 + MainApplication.Y);
+                    target.setCenterX(75 + MainApplication.X);
+                    target.setCenterY(75 + MainApplication.Y);
 
                     for (Phrase p : phraseList) {
                         if (MainApplication.X > p.leftBound && MainApplication.X < p.rightBound && MainApplication.Y < p.bottomBound && MainApplication.Y < p.topBound) {
                             p.cntFixation++;
                             if (p.cntFixation > 120) {
                                 System.out.println(p.text);
+                                tts.speak(p.text);
+                                p.cntFixation = 0;
                             }
                         } else p.cntFixation = 0;
                     }
@@ -110,9 +121,9 @@ class Phrase {
         text = t_;
         row = r_;
         col = c_;
-        leftBound = col * 175 + 150;
-        rightBound = (col + 1) * 175 + 150;
-        topBound = 725 - row * 175;
-        bottomBound = 725 - (row + 1) * 175;
+        leftBound = col * 175 + 75;
+        rightBound = (col + 1) * 175 + 75;
+        topBound = 750 - row * 175;
+        bottomBound = 750 - (row + 1) * 175;
     }
 }

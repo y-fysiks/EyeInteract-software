@@ -1,15 +1,14 @@
 package com.eyetrackerfrontend.eyetrackerfrontend;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+import java.util.Locale;
+import javax.speech.Central;
+import javax.speech.synthesis.Synthesizer;
+import javax.speech.synthesis.SynthesizerModeDesc;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class MainApplication extends Application {
     public static volatile int rawX, rawY;
     public static int X, Y;
     public static int offsetX = 0, offsetY = 0;
-    public static final int screenWidth = 1400, screenHeight = 600;
+    public static final int screenWidth = 1550, screenHeight = 750;
     private static Looper thread;
 
     @Override
@@ -74,6 +73,7 @@ class SpeechStage extends Stage {
 
         this.setOnCloseRequest(event -> {
             try {
+                GazeToSpeechController.tts.deallocate();
                 MainApplication.endThread();
             } catch (InterruptedException e) {
                 e.printStackTrace();

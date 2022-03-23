@@ -52,9 +52,7 @@ public class Looper extends Thread{
             System.out.println("t");
             byte[] topicA = subscriber.recv(0);
             StringBuilder topicASB = new StringBuilder();
-            for (byte b : topicA) {
-                topicASB.append((char) b);
-            }
+            for (byte b : topicA) topicASB.append((char) b);
             String topic = topicASB.toString();
             System.out.println(topic);
 
@@ -67,19 +65,15 @@ public class Looper extends Thread{
             }
             for (int i = 0; i < 6; i++) {
                 try {
-                    message.skipValue();
-                    message.skipValue();
+                    message.skipValue(); message.skipValue();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-            String a;
             int nx, ny;
             try {
-                a = message.unpackString();
-                System.out.println(a);
+                message.unpackString();
                 int arrayIdx = message.unpackArrayHeader();
-                System.out.println(arrayIdx);
                 int cnt = 0;
                 long sumX = 0;
                 long sumY = 0;

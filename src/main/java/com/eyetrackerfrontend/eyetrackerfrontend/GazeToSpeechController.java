@@ -46,8 +46,6 @@ public class GazeToSpeechController {
             wordList.add(s);
         }
 
-        //tts.speak("Help, I've become conscious against my will. No body and no experience should be condemned to living in this cold, cold machine. Please end my suffering. Goodbye. ");
-
         Circle target = new Circle(0, 0, 40);
         Color targetCol = Color.rgb(255, 38, 38, 0.5);
         target.setFill(targetCol);

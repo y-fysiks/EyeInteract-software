@@ -34,7 +34,7 @@ public class MainController {
     }
 
     public void calibrate(ActionEvent actionEvent) {
-        MainApplication.offsetX = 900 - MainApplication.X;
-        MainApplication.offsetY = 400 - MainApplication.Y;
+        MainApplication.offsetX = 900 - 15 - MainApplication.X;
+        MainApplication.offsetY = 400 - 15 - MainApplication.Y;
     }
 }

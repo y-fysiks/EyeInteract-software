@@ -4,6 +4,8 @@ import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -44,7 +46,7 @@ public class GazeToSpeechController {
             wordList.add(s);
         }
 
-        tts.speak("Hello, world. ");
+        //tts.speak("Help, I've become conscious against my will. No body and no experience should be condemned to living in this cold, cold machine. Please end my suffering. Goodbye. ");
 
         Circle target = new Circle(0, 0, 40);
         Color targetCol = Color.rgb(255, 38, 38, 0.5);
@@ -70,8 +72,16 @@ public class GazeToSpeechController {
                     Label lbl = new Label(phrase.text);
                     lbl.setFont(Font.font("Times New Roman", 32));
                     lbl.setTextAlignment(TextAlignment.CENTER);
-                    cnt++;
                     box.getChildren().add(lbl);
+
+                    if (phrase.hasImg) {
+                        ImageView picImgView = new ImageView(phrase.pictogram);
+                        picImgView.setPreserveRatio(true);
+                        picImgView.setFitHeight(110);
+
+                        box.getChildren().add(picImgView);
+                    }
+                    cnt++;
                 }
 
             }
@@ -88,22 +98,23 @@ public class GazeToSpeechController {
                     MainApplication.X = (int) Math.round(MainApplication.X + (MainApplication.rawX - MainApplication.X) * 0.2);
                     MainApplication.Y = (int) Math.round(MainApplication.Y + (MainApplication.rawY - MainApplication.Y) * 0.2);
 
-                    target.setCenterX(75 + MainApplication.X);
-                    target.setCenterY(75 + MainApplication.Y);
+                    target.setCenterX(15 + MainApplication.X);
+                    target.setCenterY(15 + MainApplication.Y);
 
                     for (Phrase p : phraseList) {
-                        if (MainApplication.X > p.leftBound && MainApplication.X < p.rightBound && MainApplication.Y < p.bottomBound && MainApplication.Y < p.topBound) {
+                        if (MainApplication.X > p.leftBound && MainApplication.X < p.rightBound && MainApplication.Y < p.bottomBound && MainApplication.Y > p.topBound) {
                             p.cntFixation++;
-                            if (p.cntFixation > 120) {
+                            if (p.cntFixation == 40) {
                                 System.out.println(p.text);
                                 tts.speak(p.text);
-                                p.cntFixation = 0;
                             }
                         } else p.cntFixation = 0;
                     }
 
                 } else {
                     target.setVisible(false);
+                    MainApplication.X = 0;
+                    MainApplication.Y = 0;
                 }
                 recTarget.setVisible(MainApplication.showTargetRec);
             }
@@ -113,17 +124,34 @@ public class GazeToSpeechController {
 
 class Phrase {
     String text;
+    boolean hasImg = false;
+    Image pictogram;
     int row, col;
     double leftBound, rightBound, bottomBound, topBound;
     int cntFixation = 0;
 
     public Phrase(String t_, int r_, int c_) {
-        text = t_;
+        String[] splitString = t_.split(",");
+        if (splitString.length == 2) {
+            text = splitString[0];
+            String filename = splitString[1];
+            InputStream is = getClass().getResourceAsStream(filename);
+            if (is == null) {
+                System.out.println("Image not found for " + text);
+            } else {
+                pictogram = new Image(is);
+                hasImg = true;
+            }
+
+        }
+        else {
+            text = t_;
+        }
         row = r_;
         col = c_;
-        leftBound = col * 175 + 75;
-        rightBound = (col + 1) * 175 + 75;
-        topBound = 750 - row * 175;
-        bottomBound = 750 - (row + 1) * 175;
+        leftBound = col * 175 + 135;
+        rightBound = (col + 1) * 175 + 135;
+        topBound = 135 + row * 175;
+        bottomBound = 135 + (row + 1) * 175;
     }
 }

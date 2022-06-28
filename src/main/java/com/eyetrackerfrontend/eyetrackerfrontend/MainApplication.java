@@ -5,11 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Locale;
-import javax.speech.Central;
-import javax.speech.synthesis.Synthesizer;
-import javax.speech.synthesis.SynthesizerModeDesc;
-
 import java.io.IOException;
 
 
@@ -18,10 +13,10 @@ public class MainApplication extends Application {
 
     public static boolean enableCursorMove = false;
     public static volatile boolean logData = false, showTargetRec = false;
-    public static volatile int rawX = 300, rawY = 200;
+    public static volatile int rawX = 1300, rawY = 500;
     public static int X, Y;
     public static int offsetX = 0, offsetY = 0;
-    public static final int screenWidth = 1550, screenHeight = 750;
+    public static final int screenWidth = 1670, screenHeight = 870;
     private static Looper thread;
 
     @Override
@@ -45,7 +40,7 @@ public class MainApplication extends Application {
 
 class MainStage extends Stage {
     MainStage() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 720, 480);
         this.setTitle("Eye Tracker accessibility suite");
         this.setScene(scene);
@@ -64,7 +59,7 @@ class MainStage extends Stage {
 
 class SpeechStage extends Stage {
     SpeechStage() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("GazeToSpeech.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GazeToSpeech.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1700, 900);
         this.setTitle("EyeSpeak");
         this.setScene(scene);

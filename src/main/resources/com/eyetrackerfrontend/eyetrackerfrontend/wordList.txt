@@ -1,22 +1,22 @@
-I
-You
-Help
-Yes
-No
-I don't know
-Thank you
-Stop
-Hi
-Bye
-What?
-Who?
-Where?
-When?
-Why?
-Want
-Can
-Have
-Will
-Go
-See
-Need
+I,I.png
+You,you.png
+Help,help.png
+Yes,yes.png
+No,no.png
+I don't know,I don't know.png
+Thank you,thanks.png
+Stop,stop.png
+Hi,hi.png
+Bye,bye.png
+What?,what.png
+Who?,who.png
+Where?,Where is it.png
+When?,when.png
+Why?,why.png
+Want,want.png
+Have,have.png
+Go,go.png
+See,see.png
+Need,need.png
+Hello,hello.png
+World,worldwide.png
